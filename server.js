@@ -4,6 +4,9 @@ import colors from 'colors';
 import morgan from 'morgan';
 import cors from 'cors';
 
+//Routes
+import companyRoutes from './routes/companyRoutes.js';
+
 //DB
 import connectDB from './config/db.js';
 
@@ -29,6 +32,9 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/', (req, res) => {
   res.send('API  is Running...');
 });
+
+// Routes
+app.use('/api/company', companyRoutes);
 
 //PORT
 const PORT = process.env.PORT || 5000;

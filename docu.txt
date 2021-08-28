@@ -1,0 +1,22 @@
+
+{
+	company:"10Pearls"
+	
+	
+	[
+//Entriress		{},{}
+	]
+}
+
+
+//Entriress
+	{
+		amount:400,
+		debit:{
+			head:'land'	
+		},
+		credit:{
+			head:'A/R'	
+		},
+
+	},
