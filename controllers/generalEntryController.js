@@ -6,23 +6,30 @@ import asyncHandler from 'express-async-handler';
 // @access  Public
 
 const createCompany = asyncHandler(async (req, res) => {
-  try {
-    const { companyname } = req.body;
-    const company = new Company({
-      companyname,
-    });
-    const createdCompany = await company.save();
-    res.status(201).json({
-      success: true,
-      message: 'Company Created SuccessFully',
-      data: createdCompany,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({
-      success: false,
-      error: 'Failed',
-    });
+  const { companyname } = req.body;
+  const company = await Company.findOne({ companyname });
+  //   console.log(company);
+  if (!company) {
+    try {
+      const company = new Company({
+        companyname,
+      });
+      const createdCompany = await company.save();
+      res.status(201).json({
+        success: true,
+        message: 'Company Created SuccessFully',
+        data: createdCompany,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        success: false,
+        error: 'Failed',
+      });
+    }
+  } else {
+    res.status(400);
+    throw new Error('Company Already Registered');
   }
 });
 
