@@ -4,6 +4,8 @@ import {
   createGeneralEntry,
   getCompany,
   getCompanyEnteries,
+  deleteEntery,
+  updateEntery,
 } from '../controllers/generalEntryController.js';
 const router = express.Router();
 
@@ -22,6 +24,16 @@ router.route('/create').post(createCompany);
 // @access  Public
 
 router.route('/entery/:id').post(createGeneralEntry).get(getCompanyEnteries);
+
+// @desc    delete Entery from Company
+// @route   DELETE /api/company/entery/:id
+// @access  Public
+
+// @desc    update Entery from Company
+// @route   PUT /api/company/entery/:id
+// @access  Public
+
+router.route('/entery/:id').delete(deleteEntery).put(updateEntery);
 
 // @desc    Get all Company
 // @route   GET /api/company/

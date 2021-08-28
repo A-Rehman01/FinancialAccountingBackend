@@ -4,6 +4,8 @@ import colors from 'colors';
 import morgan from 'morgan';
 import cors from 'cors';
 
+//MiddleWares
+import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
 //Routes
 import companyRoutes from './routes/companyRoutes.js';
 
@@ -29,12 +31,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //Test Server
-app.get('/', (req, res) => {
-  res.send('API  is Running...');
-});
+// app.get('/', (req, res) => {
+//   res.send('API  is Running...');
+// });
 
 // Routes
 app.use('/api/company', companyRoutes);
+
+//Custom_Errorhandling
+app.use(notFound);
+app.use(errorHandler);
 
 //PORT
 const PORT = process.env.PORT || 5000;
